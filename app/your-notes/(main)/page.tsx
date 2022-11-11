@@ -1,13 +1,5 @@
-import { collection, getDocs } from 'firebase/firestore';
-import { database } from '../../../fireBaseConfig';
+import { getData } from '#/lib/getNotes';
 import Note from './Note';
-
-const databaseRef = collection(database, 'Notes');
-export const getData = async () => {
-  return await getDocs(databaseRef).then((resp) =>
-    resp.docs.map((e) => e.data()),
-  );
-};
 
 export default async function Page() {
   const notes = await getData();

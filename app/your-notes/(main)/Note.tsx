@@ -1,17 +1,18 @@
 'use client';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc, collection } from 'firebase/firestore';
+import { useRouter } from 'next/navigation';
 import { database } from '../../../fireBaseConfig';
-import { getData } from './page';
 
 export default function Note({ note }: any) {
-  const { title, content, id } = note || {};
+  const { title, content } = note;
+  const databaseRef = collection(database, 'Notes');
+  const router = useRouter();
 
-  const deleteNote = async (id: string) => {
-    console.log(id);
-    let note = doc(database, 'Notes', id);
-    deleteDoc(note)
+  const deleteNote = async (title: string) => {
+    deleteDoc(doc(databaseRef, title))
       .then(() => {
-        getData();
+        console.log('DELETED');
+        router.refresh();
       })
       .catch((err) => {
         console.error(err);
@@ -28,7 +29,7 @@ export default function Note({ note }: any) {
       <div>
         <button
           className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
-          onClick={() => deleteNote(id)}
+          onClick={(e) => deleteNote(title)}
         >
           Delete Note
         </button>
