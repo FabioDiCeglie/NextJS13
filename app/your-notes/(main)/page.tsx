@@ -1,32 +1,41 @@
 import Link from 'next/link';
+import { app, database } from '../../../fireBaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
+const databaseRef = collection(database, 'Notes');
+const getData = async () => {
+  return await getDocs(databaseRef).then((resp) =>
+    resp.docs.map((e) => e.data()),
+  );
+};
 
-export default function Page() {
+export default async function Page() {
+  const notes = await getData();
+
   return (
     <div className="space-y-4">
       <div className="text-xl font-medium text-gray-500">Your Notes</div>
 
       <div>
-        {/* <div className={styles.grid}>
+        <div>
           {notes?.map((note) => {
             return <Note key={note.id} note={note} />;
           })}
-        </div> */}
+        </div>
       </div>
-      <div className="space-y-4"></div>
     </div>
   );
 }
 
 function Note({ note }: any) {
-  const { id, title, content, created } = note || {};
+  const { title, content } = note || {};
 
   return (
-    <Link href={`/notes/${id}`}>
-      <div>
-        <h2>{title}</h2>
-        <h5>{content}</h5>
-        <p>{created}</p>
-      </div>
-    </Link>
+    <div>
+      <h1 className="text-s font-medium text-gray-500">Title: </h1>
+      <h2 className="text-s font-medium text-white">{title}</h2>
+      <h1 className="text-s font-medium text-gray-500">Content: </h1>
+      <h5 className="text-s font-medium text-white">{content}</h5>
+      <br />
+    </div>
   );
 }
