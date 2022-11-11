@@ -14,7 +14,7 @@ export default function Page() {
 
   const addNote = () => {
     addDoc(databaseRef, {
-      id: Math.floor(Math.random() * 100),
+      id: `${Math.floor(Math.random() * 100)}`,
       title: title,
       content: content,
     })

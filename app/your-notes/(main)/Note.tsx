@@ -8,7 +8,8 @@ export default function Note({ note }: any) {
   const databaseRef = collection(database, 'Notes');
   const router = useRouter();
 
-  const deleteNote = async (title: string) => {
+  const deleteNote = async (title: string, e: any) => {
+    e.preventDefault();
     deleteDoc(doc(databaseRef, title))
       .then(() => {
         console.log('DELETED');
@@ -29,7 +30,7 @@ export default function Note({ note }: any) {
       <div>
         <button
           className="rounded border border-gray-400 bg-white py-2 px-4 font-semibold text-gray-800 shadow hover:bg-gray-100"
-          onClick={(e) => deleteNote(title)}
+          onClick={(e) => deleteNote(title, e)}
         >
           Delete Note
         </button>

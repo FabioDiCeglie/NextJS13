@@ -1,8 +1,8 @@
-import { getData } from '#/lib/getNotes';
+import { getNotes } from '#/lib/getNotes';
 import Note from './Note';
 
 export default async function Page() {
-  const notes = await getData();
+  const notes = await getNotes();
 
   return (
     <div className="space-y-4">
@@ -10,13 +10,11 @@ export default async function Page() {
 
       <div>
         <div className="grid grid-cols-2 gap-4">
-          {notes?.map((note) => {
-            return (
-              <div>
-                <Note key={note.id} note={note} />
-              </div>
-            );
-          })}
+          {notes?.map((note) => (
+            <div>
+              <Note key={note.id} note={note} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
