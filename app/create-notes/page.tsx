@@ -3,10 +3,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { database } from '../../fireBaseConfig';
+import { Alert } from './Alert';
 
 export default function Page() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [alert, setAlert] = useState(false);
   const router = useRouter();
   const databaseRef = collection(database, 'Notes');
 
@@ -16,16 +18,18 @@ export default function Page() {
       content: content,
     })
       .then(() => {
-        alert('Note created');
+        alert;
         setTitle('');
         setContent('');
         router.refresh();
+        setAlert(true);
       })
       .catch((e) => console.error(e));
   };
 
   return (
     <div className="space-y-4">
+      {alert ? <Alert /> : ''}
       <div className="text-xl font-medium text-gray-500">Create your notes</div>
 
       <div className="mb-6 md:flex md:items-center">
