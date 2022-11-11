@@ -17,9 +17,9 @@ export const getCategories = cache((): Category[] => [
     slug: 'electronics',
     count: 11,
     items: [
-      { name: 'Phones', slug: 'phones', count: 4 },
-      { name: 'Tablets', slug: 'tablets', count: 5 },
-      { name: 'Laptops', slug: 'laptops', count: 2 },
+      { name: '..', slug: 'phones', count: 4 },
+      { name: '..', slug: 'tablets', count: 5 },
+      { name: '..', slug: 'laptops', count: 2 },
     ],
   },
 ]);

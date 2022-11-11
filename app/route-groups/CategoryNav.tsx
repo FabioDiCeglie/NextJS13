@@ -24,13 +24,6 @@ const CategoryNav = ({ categories }: { categories: Category[] }) => {
       ))}
 
       <TabNavItem href="/route-groups/checkout">Checkout</TabNavItem>
-
-      <TabNavItem
-        href="/route-groups/blog"
-        isActive={'blog' === selectedLayoutSegments}
-      >
-        Blog
-      </TabNavItem>
     </div>
   );
 };
