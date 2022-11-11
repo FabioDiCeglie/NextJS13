@@ -1,7 +1,7 @@
 'use client';
 import { deleteDoc, doc, collection } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { database } from '../../../fireBaseConfig';
+import { database } from '../../fireBaseConfig';
 
 export default function Note({ note }: any) {
   const { title, content } = note;

@@ -1,7 +1,7 @@
 import { fetchCategories } from '#/lib/getCategories';
 import { Boundary } from '#/ui/Boundary';
 import React from 'react';
-import CategoryNav from '../CategoryNav';
+import CategoryNav from './CategoryNav';
 
 export default async function Layout({
   children,
