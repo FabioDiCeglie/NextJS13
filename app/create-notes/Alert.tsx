@@ -15,7 +15,7 @@ export const Alert = () => {
           </svg>
         </div>
         <div>
-          <p className="font-bold">Well done your note is created</p>
+          <p className="font-bold">Well done!</p>
         </div>
       </div>
     </div>

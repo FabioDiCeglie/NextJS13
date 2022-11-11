@@ -14,6 +14,7 @@ export default function Page() {
 
   const addNote = () => {
     addDoc(databaseRef, {
+      id: Math.floor(Math.random() * 100),
       title: title,
       content: content,
     })
@@ -21,8 +22,8 @@ export default function Page() {
         alert;
         setTitle('');
         setContent('');
-        router.refresh();
         setAlert(true);
+        router.refresh();
       })
       .catch((e) => console.error(e));
   };
