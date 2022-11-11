@@ -24,4 +24,19 @@ export const demos: Item[] = [
       },
     ],
   },
+  {
+    name: 'Work',
+    items: [
+      {
+        name: 'To Do',
+        slug: 'to-do',
+        description: 'To Do List',
+      },
+      {
+        name: 'Create To Do',
+        slug: '',
+        description: 'create a to-do',
+      },
+    ],
+  },
 ];

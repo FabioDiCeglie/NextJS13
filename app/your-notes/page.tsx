@@ -1,4 +1,4 @@
-import { getNotes } from '#/lib/getNotes';
+import { getNotes } from '#/lib/hooks';
 import Note from './Note';
 
 export default async function Page() {
