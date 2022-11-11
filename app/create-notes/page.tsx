@@ -8,15 +8,6 @@ export default function Page() {
           <li>Here you can create your own notes</li>
         </ul>
       </div>
-
-      <div>
-        <a
-          className="font-medium text-gray-300 hover:text-white"
-          href="https://github.com/FabioDiCeglie/NETJS13_tests"
-        >
-          Learn more
-        </a>
-      </div>
     </div>
   );
 }

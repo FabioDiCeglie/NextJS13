@@ -7,20 +7,12 @@ export type PageProps = {
 export type Category = {
   name: string;
   slug: string;
-  count: number;
-  items: Omit<Category, 'items'>[];
 };
 
 export const getCategories = cache((): Category[] => [
   {
-    name: 'Your Notes',
-    slug: 'electronics',
-    count: 11,
-    items: [
-      { name: '..', slug: 'phones', count: 4 },
-      { name: '..', slug: 'tablets', count: 5 },
-      { name: '..', slug: 'laptops', count: 2 },
-    ],
+    name: 'Notes',
+    slug: 'notes',
   },
 ]);
 
@@ -31,19 +23,4 @@ export async function fetchCategoryBySlug(slug: string | undefined) {
 
 export async function fetchCategories(): Promise<Category[]> {
   return getCategories();
-}
-
-async function findSubCategory(
-  category: Category | undefined,
-  subCategorySlug: string | undefined,
-) {
-  return category?.items.find((category) => category.slug === subCategorySlug);
-}
-
-export async function fetchSubCategory(
-  categorySlug: string | undefined,
-  subCategorySlug: string | undefined,
-) {
-  const category = await fetchCategoryBySlug(categorySlug);
-  return findSubCategory(category, subCategorySlug);
 }

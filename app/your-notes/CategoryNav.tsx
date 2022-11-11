@@ -12,7 +12,7 @@ const CategoryNav = ({ categories }: { categories: Category[] }) => {
       {categories.map((item) => (
         <TabNavItem
           key={item.slug}
-          href={`/route-groups/${item.slug}`}
+          // href={`/route-groups/${item.slug}`}
           isActive={item.slug === selectedLayoutSegments}
         >
           {item.name}
