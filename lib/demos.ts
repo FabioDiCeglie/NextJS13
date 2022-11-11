@@ -14,12 +14,12 @@ export const demos: Item[] = [
     items: [
       {
         name: 'Your Notes',
-        slug: 'route-groups',
+        slug: 'your-notes',
         description: 'Organize your notes',
       },
       {
         name: 'Create notes',
-        slug: 'layouts',
+        slug: 'create-notes',
         description: 'Create Notes',
       },
     ],

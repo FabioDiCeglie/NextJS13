@@ -22,8 +22,6 @@ const CategoryNav = ({ categories }: { categories: Category[] }) => {
           {item.name}
         </TabNavItem>
       ))}
-
-      <TabNavItem href="/route-groups/checkout">Checkout</TabNavItem>
     </div>
   );
 };
