@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import { app, database } from '../../../fireBaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
+import { database } from '../../../fireBaseConfig';
 const databaseRef = collection(database, 'Notes');
 const getData = async () => {
   return await getDocs(databaseRef).then((resp) =>
