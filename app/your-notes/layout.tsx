@@ -1,4 +1,4 @@
-import { fetchCategories } from '#/lib/getCategories';
+import { fetchCategories } from '#/lib/hooks';
 import { Boundary } from '#/ui/Boundary';
 import React from 'react';
 import CategoryNav from './CategoryNav';

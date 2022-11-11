@@ -11,9 +11,9 @@ export default async function Page() {
           <div className="grid grid-cols-2 gap-4">
             {todo?.map((todo) => (
               <div>
-                <h1 className="text-s font-medium text-gray-500">
-                  {todo.ToDo}
-                </h1>
+                <ul className="max-w-md list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">
+                  <li>{todo.ToDo}</li>
+                </ul>
               </div>
             ))}
           </div>
