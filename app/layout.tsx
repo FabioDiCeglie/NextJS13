@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: any }) {
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Next.js App Directory Playground</title>
+        <title>Next.js 13</title>
         <meta
           name="description"
           content="Next.js App Directory Playground"

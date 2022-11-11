@@ -9,10 +9,6 @@ const CategoryNav = ({ categories }: { categories: Category[] }) => {
 
   return (
     <div className="flex items-center space-x-4">
-      <TabNavItem href="/route-groups" isActive={!selectedLayoutSegments}>
-        Home
-      </TabNavItem>
-
       {categories.map((item) => (
         <TabNavItem
           key={item.slug}
