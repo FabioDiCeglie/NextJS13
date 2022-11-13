@@ -1,8 +1,5 @@
 'use client';
 import { gql, useQuery } from '@apollo/client';
-import { deleteDoc, doc, collection } from 'firebase/firestore';
-import { useRouter } from 'next/navigation';
-import { database } from '../../fireBaseConfig';
 
 const AllNotesQuery = gql`
   query {
@@ -15,26 +12,10 @@ const AllNotesQuery = gql`
 `;
 
 export default function Note() {
-  // const { title, content } = note;
-  const databaseRef = collection(database, 'Notes');
-  const router = useRouter();
   const { data, loading, error } = useQuery(AllNotesQuery);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Oh no... {error.message}</p>;
-
-  // const deleteNote = async (title: string, e: any) => {
-  //   e.preventDefault();
-  //   deleteDoc(doc(databaseRef, title))
-  //     .then(() => {
-  //       console.log('DELETED');
-  //       router.refresh();
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
-
   return (
     <div>
       {data.notes?.map(({ title, content }: any) => (

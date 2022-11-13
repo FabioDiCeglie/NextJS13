@@ -1,8 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-import { database } from '../../fireBaseConfig';
 import { Alert } from './Alert';
 
 export default function Page() {
@@ -10,23 +8,22 @@ export default function Page() {
   const [content, setContent] = useState('');
   const [alert, setAlert] = useState(false);
   const router = useRouter();
-  const databaseRef = collection(database, 'Notes');
 
-  const addNote = () => {
-    addDoc(databaseRef, {
-      id: `${Math.floor(Math.random() * 100)}`,
-      title: title,
-      content: content,
-    })
-      .then(() => {
-        alert;
-        setTitle('');
-        setContent('');
-        setAlert(true);
-        router.refresh();
-      })
-      .catch((e) => console.error(e));
-  };
+  // const addNote = () => {
+  //   addDoc(databaseRef, {
+  //     id: `${Math.floor(Math.random() * 100)}`,
+  //     title: title,
+  //     content: content,
+  //   })
+  //     .then(() => {
+  //       alert;
+  //       setTitle('');
+  //       setContent('');
+  //       setAlert(true);
+  //       router.refresh();
+  //     })
+  //     .catch((e) => console.error(e));
+  // };
 
   return (
     <div className="space-y-4">
@@ -69,7 +66,7 @@ export default function Page() {
         <div className="md:w-2/3">
           <button
             className="focus:shadow-outline rounded py-2 px-4 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
-            onClick={addNote}
+            // onClick={addNote}
           >
             Create a note
           </button>
