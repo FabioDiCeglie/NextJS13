@@ -1,15 +1,7 @@
 'use client';
-import { gql, useQuery } from '@apollo/client';
-
-const AllNotesQuery = gql`
-  query {
-    notes {
-      id
-      title
-      content
-    }
-  }
-`;
+import { AllNotesQuery } from '#/graphql/Query/queries';
+import { Notes } from '#/lib/types';
+import { useQuery } from '@apollo/client';
 
 export default function Note() {
   const { data, loading, error } = useQuery(AllNotesQuery);
@@ -18,7 +10,7 @@ export default function Note() {
   if (error) return <p>Oh no... {error.message}</p>;
   return (
     <div>
-      {data.notes?.map(({ title, content }: any) => (
+      {data.notes?.map(({ title, content }: Notes) => (
         <div>
           <h1 className="text-s font-medium text-gray-500">Title: </h1>
           <h2 className="text-s font-medium text-white">{title}</h2>
