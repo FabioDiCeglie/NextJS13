@@ -1,4 +1,6 @@
 'use client';
+import { CREATE_NOTE } from '#/graphql/Mutation/mutation';
+import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Alert } from './Alert';
@@ -9,21 +11,22 @@ export default function Page() {
   const [alert, setAlert] = useState(false);
   const router = useRouter();
 
-  // const addNote = () => {
-  //   addDoc(databaseRef, {
-  //     id: `${Math.floor(Math.random() * 100)}`,
-  //     title: title,
-  //     content: content,
-  //   })
-  //     .then(() => {
-  //       alert;
-  //       setTitle('');
-  //       setContent('');
-  //       setAlert(true);
-  //       router.refresh();
-  //     })
-  //     .catch((e) => console.error(e));
-  // };
+  const [resultCreateNote, { data, loading, error }] = useMutation(CREATE_NOTE);
+
+  const addNote = async () => {
+    resultCreateNote({
+      variables: {
+        id: Math.floor(Math.random() * 10000).toString() as string,
+        title,
+        content,
+      },
+    }).then(() => {
+      setTitle('');
+      setContent('');
+      setAlert(true);
+      router.refresh();
+    });
+  };
 
   return (
     <div className="space-y-4">
@@ -66,7 +69,7 @@ export default function Page() {
         <div className="md:w-2/3">
           <button
             className="focus:shadow-outline rounded py-2 px-4 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
-            // onClick={addNote}
+            onClick={addNote}
           >
             Create a note
           </button>

@@ -1,4 +1,5 @@
 'use client';
+
 import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { useQuery } from '@apollo/client';
