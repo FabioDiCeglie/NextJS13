@@ -5,6 +5,7 @@ export default function Loading() {
     <div>
       {' '}
       <SkeletonCard />
+      <SkeletonCard />
     </div>
   );
 }
