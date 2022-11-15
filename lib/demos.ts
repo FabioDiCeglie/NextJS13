@@ -5,9 +5,9 @@ export const demos: Item[] = [
     name: 'Notes',
     items: [
       {
-        name: 'Your Notes',
-        slug: 'your-notes',
-        description: 'Organize your notes',
+        name: 'Notes',
+        slug: 'notes',
+        description: 'Your notes',
       },
       {
         name: 'Create note',

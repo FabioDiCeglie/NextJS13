@@ -5,7 +5,6 @@ import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
-import { useRouter } from 'next/navigation';
 
 export default function Note() {
   const { data, loading } = useQuery(AllNotesQuery);

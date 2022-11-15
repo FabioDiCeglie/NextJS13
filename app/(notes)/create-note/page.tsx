@@ -23,7 +23,7 @@ export default function Page() {
     });
     setTitle('');
     setContent('');
-    router.push('/your-notes');
+    router.push('/notes');
   };
 
   return (
