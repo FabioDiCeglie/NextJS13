@@ -1,5 +1,6 @@
 'use client';
 import { CREATE_NOTE } from '#/graphql/Mutation/mutation';
+import { AllNotesQuery } from '#/graphql/Query/queries';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -7,11 +8,11 @@ import { useState } from 'react';
 export default function Page() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [alert, setAlert] = useState(false);
   const router = useRouter();
 
-  const [resultCreateNote] = useMutation(CREATE_NOTE);
-
+  const [resultCreateNote] = useMutation(CREATE_NOTE, {
+    refetchQueries: [{ query: AllNotesQuery }, 'AllNotesQuery'],
+  });
   const addNote = async () => {
     resultCreateNote({
       variables: {
@@ -19,18 +20,14 @@ export default function Page() {
         title,
         content,
       },
-    }).then(() => {
-      setTitle('');
-      setContent('');
-      setAlert(true);
-      router.refresh();
-      router.push('/your-notes');
     });
+    setTitle('');
+    setContent('');
+    router.push('/your-notes');
   };
 
   return (
     <div className="space-y-4">
-      {/* {alert ? <Alert /> : ''} */}
       <div className="text-xl font-medium text-gray-500">Create your notes</div>
 
       <div className="mb-6 md:flex md:items-center">

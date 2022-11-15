@@ -3,11 +3,12 @@
 import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
+import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 
 export default function Note() {
-  const { data } = useQuery(AllNotesQuery);
+  const { data, loading } = useQuery(AllNotesQuery);
   const [resultDeleteNote] = useMutation(DELETE_NOTE, {
     refetchQueries: [{ query: AllNotesQuery }, 'AllNotesQuery'],
   });
@@ -18,14 +19,15 @@ export default function Note() {
       variables: {
         id,
       },
-    }).then(() => router.refresh());
+    });
   };
 
+  if (loading) return <SkeletonCard />;
   return (
     <div>
       {data?.notes?.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
-          <div className="max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+          <div className="mb-10 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
             <a href="#">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {title}
