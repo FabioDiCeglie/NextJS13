@@ -8,7 +8,6 @@ export const resolvers = {
       return ctx.prisma.note.findMany();
     },
     tasks: (_parent: undefined, _args: undefined, ctx: Context) => {
-      console.log(ctx.prisma.toDo);
       return ctx.prisma.toDo.findMany();
     },
   },
