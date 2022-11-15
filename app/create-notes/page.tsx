@@ -11,7 +11,7 @@ export default function Page() {
   const [alert, setAlert] = useState(false);
   const router = useRouter();
 
-  const [resultCreateNote, { data, loading, error }] = useMutation(CREATE_NOTE);
+  const [resultCreateNote] = useMutation(CREATE_NOTE);
 
   const addNote = async () => {
     resultCreateNote({
@@ -24,13 +24,13 @@ export default function Page() {
       setTitle('');
       setContent('');
       setAlert(true);
-      router.refresh();
+      router.push('/your-notes');
     });
   };
 
   return (
     <div className="space-y-4">
-      {alert ? <Alert /> : ''}
+      {/* {alert ? <Alert /> : ''} */}
       <div className="text-xl font-medium text-gray-500">Create your notes</div>
 
       <div className="mb-6 md:flex md:items-center">

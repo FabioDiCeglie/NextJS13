@@ -22,5 +22,10 @@ export const resolvers = {
         },
       });
     },
+    deleteNote: (_parent: undefined, args: { id: string }, ctx: Context) => {
+      return ctx.prisma.note.delete({
+        where: { id: args.id },
+      });
+    },
   },
 };
