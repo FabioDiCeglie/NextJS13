@@ -11,6 +11,7 @@ export const typeDefs = gql`
   type Mutation {
     createNote(content: String!, title: String!, id: String!): Note!
     deleteNote(id: String!): Note!
+    createTask(content: String!, title: String!, id: String!): Task!
     deleteTask(id: String!): Task!
   }
 

@@ -36,5 +36,18 @@ export const resolvers = {
         where: { id: args.id },
       });
     },
+    createTask: (
+      _parent: undefined,
+      args: { id: string; title: string; content: string },
+      ctx: Context,
+    ) => {
+      return ctx.prisma.toDo.create({
+        data: {
+          id: args.id,
+          title: args.title,
+          content: args.content,
+        },
+      });
+    },
   },
 };

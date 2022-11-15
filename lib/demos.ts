@@ -1,12 +1,4 @@
-type Item = {
-  name: string;
-  items: {
-    name: string;
-    slug: string;
-    description?: string;
-    isDisabled?: boolean;
-  }[];
-};
+import { Item } from './types';
 
 export const demos: Item[] = [
   {
