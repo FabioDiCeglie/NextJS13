@@ -3,12 +3,15 @@
 import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
+import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 
 export default function Note() {
   const { data, loading, error } = useQuery(AllNotesQuery);
-  const [resultDeleteNote] = useMutation(DELETE_NOTE);
+  const [resultDeleteNote] = useMutation(DELETE_NOTE, {
+    refetchQueries: [{ query: AllNotesQuery }, 'AllNotesQuery'],
+  });
   const router = useRouter();
 
   const deleteNote = async (id: String) => {
@@ -19,7 +22,12 @@ export default function Note() {
     }).then(() => router.refresh());
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <>
+        <SkeletonCard />
+      </>
+    );
   if (error) return <p>Oh no... {error.message}</p>;
   return (
     <div>

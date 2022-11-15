@@ -3,7 +3,6 @@ import { CREATE_NOTE } from '#/graphql/Mutation/mutation';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Alert } from './Alert';
 
 export default function Page() {
   const [title, setTitle] = useState('');
@@ -24,6 +23,7 @@ export default function Page() {
       setTitle('');
       setContent('');
       setAlert(true);
+      router.refresh();
       router.push('/your-notes');
     });
   };
