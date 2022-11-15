@@ -7,6 +7,10 @@ export const resolvers = {
     notes: (_parent: undefined, _args: undefined, ctx: Context) => {
       return ctx.prisma.note.findMany();
     },
+    tasks: (_parent: undefined, _args: undefined, ctx: Context) => {
+      console.log(ctx.prisma.toDo);
+      return ctx.prisma.toDo.findMany();
+    },
   },
   Mutation: {
     createNote: (
@@ -24,6 +28,11 @@ export const resolvers = {
     },
     deleteNote: (_parent: undefined, args: { id: string }, ctx: Context) => {
       return ctx.prisma.note.delete({
+        where: { id: args.id },
+      });
+    },
+    deleteTask: (_parent: undefined, args: { id: string }, ctx: Context) => {
+      return ctx.prisma.toDo.delete({
         where: { id: args.id },
       });
     },

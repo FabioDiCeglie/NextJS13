@@ -17,3 +17,11 @@ export const DELETE_NOTE = gql`
     }
   }
 `;
+
+export const DELETE_TASK = gql`
+  mutation ($id: String!) {
+    deleteTask(id: $id) {
+      id
+    }
+  }
+`;

@@ -5,11 +5,13 @@ export const typeDefs = gql`
     notes: [Note]!
     user(id: String!): User!
     users: [User]!
+    tasks: [Task]!
   }
 
   type Mutation {
     createNote(content: String!, title: String!, id: String!): Note!
     deleteNote(id: String!): Note!
+    deleteTask(id: String!): Task!
   }
 
   type User {
@@ -20,6 +22,14 @@ export const typeDefs = gql`
   }
 
   type Note {
+    id: String
+    title: String
+    content: String
+    author: [User]!
+    authorId: String
+  }
+
+  type Task {
     id: String
     title: String
     content: String

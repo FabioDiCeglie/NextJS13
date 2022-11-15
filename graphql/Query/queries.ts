@@ -9,3 +9,13 @@ export const AllNotesQuery = gql`
     }
   }
 `;
+
+export const getTasks = gql`
+  query {
+    tasks {
+      id
+      title
+      content
+    }
+  }
+`;

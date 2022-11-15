@@ -27,9 +27,7 @@ export default function Page() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="text-xl font-medium text-gray-500">Create your notes</div>
-
+    <>
       <div className="mb-6 md:flex md:items-center">
         <div className="md:w-1/3">
           <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
@@ -65,13 +63,13 @@ export default function Page() {
         <div className="md:w-1/3"></div>
         <div className="md:w-2/3">
           <button
-            className="focus:shadow-outline rounded py-2 px-4 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
+            className="focus:shadow-outline rounded py-2 px-4 font-bold text-white shadow hover:bg-blue-500 focus:outline-none"
             onClick={addNote}
           >
             Create a note
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
