@@ -3,7 +3,6 @@
 import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
-import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 
@@ -22,16 +21,9 @@ export default function Note() {
     }).then(() => router.refresh());
   };
 
-  if (loading)
-    return (
-      <>
-        <SkeletonCard />
-      </>
-    );
-  if (error) return <p>Oh no... {error.message}</p>;
   return (
     <div>
-      {data.notes?.map(({ title, content, id }: Notes) => (
+      {data?.notes?.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
           <h1 className="text-s font-medium text-gray-500">Title: </h1>
           <h2 className="text-s font-medium text-white">{title}</h2>
