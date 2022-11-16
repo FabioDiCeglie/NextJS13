@@ -13,12 +13,14 @@ export const typeDefs = gql`
     deleteNote(id: String!): Note!
     createTask(content: String!, title: String!, id: String!): Task!
     deleteTask(id: String!): Task!
+    createUser(id: String!, email: String!, password: String): User!
   }
 
   type User {
     id: String
     name: String
     email: String
+    password: String
     notes: [Note]!
   }
 

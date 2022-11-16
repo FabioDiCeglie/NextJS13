@@ -17,6 +17,13 @@ model Note {
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
 }
+model ToDo {
+  id        String     @default(cuid()) @id
+  title     String
+  content   String?
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
 
 model User {
   id            String       @default(cuid()) @id
@@ -30,10 +37,3 @@ model User {
   @@map(name: "users")
 }
 
-model ToDo {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
-}
