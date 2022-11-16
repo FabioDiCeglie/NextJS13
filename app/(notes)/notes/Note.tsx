@@ -21,7 +21,7 @@ export default function Note() {
   };
 
   if (loading) return <SkeletonCard />;
-  if (data.notes.length === 0)
+  if (data?.notes.length === 0)
     return (
       <>
         <EmptyDashboard />
