@@ -5,8 +5,10 @@ import { AllNotesQuery } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
+import { useSession } from 'next-auth/react';
 
 export default function Note() {
+  const { data: session } = useSession();
   const { data, loading } = useQuery(AllNotesQuery);
   const [resultDeleteNote] = useMutation(DELETE_NOTE, {
     refetchQueries: [{ query: AllNotesQuery }, 'AllNotesQuery'],
@@ -27,6 +29,9 @@ export default function Note() {
         <EmptyDashboard />
       </>
     );
+  if (!session) {
+    return <div>You need to be authenticated to view this page.</div>;
+  }
   return (
     <div>
       {data?.notes?.map(({ title, content, id }: Notes) => (

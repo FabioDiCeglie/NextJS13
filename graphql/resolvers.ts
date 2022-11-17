@@ -5,14 +5,22 @@ import { Context } from '@apollo/client';
 export const resolvers = {
   Query: {
     notes: (_parent: undefined, _args: undefined, ctx: Context) => {
-      return ctx.prisma.note.findMany();
+      const session = ctx.session;
+      if (!session) {
+        return { notes: [] };
+      }
+      return ctx.prisma.note.findMany({
+        where: {
+          author: { email: session.user.email },
+        },
+      });
     },
     tasks: (_parent: undefined, _args: undefined, ctx: Context) => {
       return ctx.prisma.toDo.findMany();
     },
   },
   Mutation: {
-    createNote: (
+    createNote: async (
       _parent: undefined,
       args: { id: string; title: string; content: string },
       ctx: Context,
