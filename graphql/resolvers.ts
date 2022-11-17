@@ -1,22 +1,27 @@
 import { Context } from '@apollo/client';
+import { getSession } from 'next-auth/react';
 
 // The context argument is helpful for passing things that any resolver might need, like authentication scope, database connections, and custom fetch functions.
 // Here we are using it to access Prisma Client.
 export const resolvers = {
   Query: {
-    notes: (_parent: undefined, _args: undefined, ctx: Context) => {
-      const session = ctx.session;
-      if (!session) {
-        return { notes: [] };
-      }
+    notes: async (_parent: undefined, _args: undefined, ctx: Context) => {
+      const req = ctx.req.session;
+      const session = await getSession({ req });
       return ctx.prisma.note.findMany({
         where: {
-          author: { email: session.user.email },
+          author: { include: { email: session?.user?.email } },
         },
       });
     },
-    tasks: (_parent: undefined, _args: undefined, ctx: Context) => {
-      return ctx.prisma.toDo.findMany();
+    tasks: async (_parent: undefined, _args: undefined, ctx: Context) => {
+      const req = ctx.req;
+      const session = await getSession({ req });
+      return ctx.prisma.toDo.findMany({
+        where: {
+          author: { include: { email: session?.user?.email } },
+        },
+      });
     },
   },
   Mutation: {
@@ -25,11 +30,15 @@ export const resolvers = {
       args: { id: string; title: string; content: string },
       ctx: Context,
     ) => {
+      const req = ctx.req.session;
+      const session = await getSession({ req });
+
       return ctx.prisma.note.create({
         data: {
           id: args.id,
           title: args.title,
           content: args.content,
+          author: { connect: { email: session?.user?.email } },
         },
       });
     },

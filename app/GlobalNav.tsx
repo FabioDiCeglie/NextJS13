@@ -1,10 +1,11 @@
 'use client';
 
 import { demos } from '#/lib/demos';
+import UserCard from '#/ui/UserCard';
 import clsx from 'clsx';
-import { useSelectedLayoutSegments } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { signOut, useSession } from 'next-auth/react';
+import { useSelectedLayoutSegments } from 'next/navigation';
 
 export default function GlobalNav() {
   const { data: session } = useSession();
@@ -13,28 +14,7 @@ export default function GlobalNav() {
   return (
     <>
       {session ? (
-        <div className="mb-4 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
-          <div className="mt-3 flex flex-col items-center pb-10">
-            <img
-              className="mb-3 h-24 w-24 rounded-full shadow-lg"
-              src={session.user?.image ?? undefined}
-              alt="Bonnie image"
-            />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              {session.user?.name}
-            </h5>
-
-            <div className="mt-4 flex space-x-3 md:mt-6">
-              <a
-                href={`/`}
-                onClick={() => signOut()}
-                className="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Log Out
-              </a>
-            </div>
-          </div>
-        </div>
+        <UserCard session={session} />
       ) : (
         <Link
           href={`/api/auth/signin`}
