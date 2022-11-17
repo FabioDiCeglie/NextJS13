@@ -9,11 +9,11 @@ import { signOut, useSession } from 'next-auth/react';
 export default function GlobalNav() {
   const { data: session } = useSession();
   const [selectedLayoutSegments] = useSelectedLayoutSegments();
-  console.log(session);
+
   return (
     <>
       {session ? (
-        <div className="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-4 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
           <div className="mt-3 flex flex-col items-center pb-10">
             <img
               className="mb-3 h-24 w-24 rounded-full shadow-lg"
