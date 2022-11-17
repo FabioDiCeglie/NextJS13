@@ -35,11 +35,3 @@ export const CREATE_TASK = gql`
     }
   }
 `;
-
-export const CREATE_USER = gql`
-  mutation ($id: String!, $email: String!, $password: String!) {
-    createUser(id: $id, email: $email, password: $password) {
-      id
-    }
-  }
-`;

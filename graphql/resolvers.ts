@@ -56,18 +56,5 @@ export const resolvers = {
         },
       });
     },
-    createUser: (
-      _parent: undefined,
-      args: { id: string; email: string; password: string },
-      ctx: Context,
-    ) => {
-      return ctx.prisma.user.create({
-        data: {
-          id: args.id,
-          email: args.email,
-          password: args.password,
-        },
-      });
-    },
   },
 };
