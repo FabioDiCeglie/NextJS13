@@ -53,7 +53,7 @@ export const resolvers = {
       args: { id: string; email: string; password: string },
       ctx: Context,
     ) => {
-      return ctx.prisma.users.create({
+      return ctx.prisma.user.create({
         data: {
           id: args.id,
           email: args.email,

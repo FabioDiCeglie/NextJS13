@@ -3,8 +3,6 @@ import { gql } from 'apollo-server-micro';
 export const typeDefs = gql`
   type Query {
     notes: [Note]!
-    user(id: String!): User!
-    users: [User]!
     tasks: [Task]!
   }
 
@@ -21,7 +19,6 @@ export const typeDefs = gql`
     name: String
     email: String
     password: String
-    notes: [Note]!
   }
 
   type Note {
