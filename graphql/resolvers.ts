@@ -6,11 +6,11 @@ import { getSession } from 'next-auth/react';
 export const resolvers = {
   Query: {
     notes: async (_parent: undefined, _args: undefined, ctx: Context) => {
-      const req = ctx.req.session;
+      const req = ctx.req;
       const session = await getSession({ req });
       return ctx.prisma.note.findMany({
         where: {
-          author: { include: { email: session?.user?.email } },
+          author: { email: session?.user?.email },
         },
       });
     },
@@ -19,26 +19,25 @@ export const resolvers = {
       const session = await getSession({ req });
       return ctx.prisma.toDo.findMany({
         where: {
-          author: { include: { email: session?.user?.email } },
+          author: { email: session?.user?.email },
         },
       });
     },
   },
   Mutation: {
-    createNote: async (
+    createNote: (
       _parent: undefined,
       args: { id: string; title: string; content: string },
       ctx: Context,
     ) => {
-      const req = ctx.req.session;
-      const session = await getSession({ req });
+      const session = ctx.req.session;
 
       return ctx.prisma.note.create({
         data: {
           id: args.id,
           title: args.title,
           content: args.content,
-          author: { connect: { email: session?.user?.email } },
+          authorId: { connect: { email: session?.user?.email } },
         },
       });
     },

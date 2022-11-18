@@ -1,6 +1,6 @@
 import Task from './Task';
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="space-y-4">
       <div className="text-xl font-medium text-gray-500">Your To-do List</div>

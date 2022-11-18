@@ -1,6 +1,6 @@
 'use client';
 import { CREATE_NOTE } from '#/graphql/Mutation/mutation';
-import { AllNotesQuery } from '#/graphql/Query/queries';
+import { getNotes } from '#/graphql/Query/queries';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -11,7 +11,7 @@ export default function Page() {
   const router = useRouter();
 
   const [resultCreateNote] = useMutation(CREATE_NOTE, {
-    refetchQueries: [{ query: AllNotesQuery }, 'AllNotesQuery'],
+    refetchQueries: [{ query: getNotes }, 'AllNotesQuery'],
   });
   const addNote = async () => {
     resultCreateNote({
