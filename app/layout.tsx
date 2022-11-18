@@ -2,7 +2,7 @@
 import '#/styles/globals.css';
 import GlobalNav from './GlobalNav';
 import { ApolloProvider } from '@apollo/client';
-import apolloClient from '../lib/apollo';
+import apolloClient from '../graphql/apollo';
 import { SessionProvider } from 'next-auth/react';
 
 export default function RootLayout({ children }: { children: any }) {

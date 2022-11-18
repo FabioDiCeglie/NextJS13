@@ -19,6 +19,9 @@ const options = {
       clientSecret: process.env.GITHUB_SECRET ?? '',
     }),
   ],
+  pages: {
+    signIn: '/signIn',
+  },
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 };
