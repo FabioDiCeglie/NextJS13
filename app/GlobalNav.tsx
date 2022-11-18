@@ -1,6 +1,6 @@
 'use client';
 
-import { demos } from '#/lib/demos';
+import { demos } from '#/lib/dummyData';
 import UserCard from '#/ui/UserCard';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';

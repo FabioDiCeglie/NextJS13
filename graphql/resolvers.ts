@@ -1,10 +1,5 @@
+import { getUserSession } from '#/lib/helpers';
 import { Context } from '@apollo/client';
-import { IncomingMessage } from 'http';
-import { getSession } from 'next-auth/react';
-
-const getUserSession = async (req: IncomingMessage | undefined) => {
-  return await getSession({ req });
-};
 
 // The context argument is helpful for passing things that any resolver might need, like authentication scope, database connections, and custom fetch functions.
 // Here we are using it to access Prisma Client.
