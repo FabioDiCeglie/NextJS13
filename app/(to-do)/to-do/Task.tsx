@@ -3,6 +3,8 @@
 import { DELETE_TASK } from '#/graphql/Mutation/mutation';
 import { getTasks } from '#/graphql/Query/queries';
 import { Tasks } from '#/lib/types';
+import { EmptyDashboard } from '#/ui/EmptyDashboard';
+import { SignIn } from '#/ui/SignIn';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
@@ -22,14 +24,9 @@ export default function Task() {
     });
   };
 
-  if (!session) return <h1>You need to log in</h1>;
+  if (!session) return <SignIn />;
   if (loading) return <SkeletonCard />;
-  if (data.tasks.length === 0)
-    return (
-      <>
-        <EmptyDashboard />
-      </>
-    );
+  if (data.tasks.length === 0) return <EmptyDashboard />;
 
   return (
     <div>
@@ -55,13 +52,3 @@ export default function Task() {
     </div>
   );
 }
-
-const EmptyDashboard = () => (
-  <div>
-    <div className="mb-10 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Any task available
-      </p>
-    </div>
-  </div>
-);

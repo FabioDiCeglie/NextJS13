@@ -3,6 +3,8 @@
 import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { getNotes } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
+import { EmptyDashboard } from '#/ui/EmptyDashboard';
+import { SignIn } from '#/ui/SignIn';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
@@ -22,14 +24,10 @@ export default function Note() {
     });
   };
 
-  if (!session) return <h1>You need to log in</h1>;
+  if (!session) return <SignIn />;
   if (loading) return <SkeletonCard />;
-  if (data?.notes.length === 0)
-    return (
-      <>
-        <EmptyDashboard />
-      </>
-    );
+  if (data?.notes.length === 0) return <EmptyDashboard />;
+
   return (
     <div>
       {data?.notes?.map(({ title, content, id }: Notes) => (
@@ -54,13 +52,3 @@ export default function Note() {
     </div>
   );
 }
-
-const EmptyDashboard = () => (
-  <div>
-    <div className="mb-10 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Any notes available
-      </p>
-    </div>
-  </div>
-);
