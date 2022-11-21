@@ -2,7 +2,7 @@
 import { Provider } from '#/lib/types';
 import { signIn } from 'next-auth/react';
 
-export default function Form({ providers }: any) {
+export default function SignIn({ providers }: any) {
   const providersInfo = Object.values(providers);
   const gitHubProvider = providersInfo[0] as Provider;
   const googleProvider = providersInfo[1] as Provider;
@@ -10,10 +10,7 @@ export default function Form({ providers }: any) {
   return (
     <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
       <div className="p-6 sm:p-16">
-        <div className="space-y-4">
-          <h2 className="mb-8 text-2xl font-bold text-white">Sign in</h2>
-        </div>
-        <div className="mt-16 grid space-y-4">
+        <div className="mt-6 grid space-y-4">
           <button
             className="group h-12 rounded-full border-2 border-gray-300 px-6 transition duration-300
  hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
