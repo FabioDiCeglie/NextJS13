@@ -19,3 +19,8 @@ export type Tasks = {
   title: String;
   content: String;
 };
+
+export type Provider = {
+  id: string;
+  name: string;
+};
