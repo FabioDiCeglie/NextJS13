@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const apolloClient = new ApolloClient({
-  uri: 'https://next-js-13.vercel.app/api/auth',
+  uri: 'https://operation-app-next-js-13.vercel.app/api/graphql',
   cache: new InMemoryCache(),
 });
 
