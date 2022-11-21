@@ -4,7 +4,7 @@ import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { getNotes } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { EmptyDashboard } from '#/ui/EmptyDashboard';
-import { SignIn } from '#/ui/SignIn';
+import { SignIn } from '#/ui/NavToSignIn';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';

@@ -1,5 +1,5 @@
-import { getProviders, signIn } from 'next-auth/react';
-import Form from './Form';
+import { getProviders } from 'next-auth/react';
+import Form from '../../../ui/SignIn';
 
 export default async function Page() {
   const providers = await getProviders();
