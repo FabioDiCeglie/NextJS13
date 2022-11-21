@@ -3,7 +3,6 @@ import { Provider } from '#/lib/types';
 import { signIn } from 'next-auth/react';
 
 export default function SignIn({ providers }: any) {
-  if (!providers) return <>Error</>;
   const providersInfo = Object.values(providers);
   const gitHubProvider = providersInfo[0] as Provider;
   const googleProvider = providersInfo[1] as Provider;
