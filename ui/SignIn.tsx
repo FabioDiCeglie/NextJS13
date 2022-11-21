@@ -7,6 +7,7 @@ export default function SignIn({ providers }: any) {
   const gitHubProvider = providersInfo[0] as Provider;
   const googleProvider = providersInfo[1] as Provider;
 
+  if (!gitHubProvider || !googleProvider) return <h1>Error</h1>;
   return (
     <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
       <div className="p-6 sm:p-16">
