@@ -1,11 +1,13 @@
 'use client';
 import { Provider } from '#/lib/types';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn({ providers }: any) {
   const providersInfo = Object.values(providers);
   const gitHubProvider = providersInfo[0] as Provider;
   const googleProvider = providersInfo[1] as Provider;
+  const router = useRouter();
 
   return (
     <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
@@ -30,7 +32,10 @@ export default function SignIn({ providers }: any) {
           <button
             className="group h-12 rounded-full border-2 border-gray-300 px-6 transition duration-300
    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
-            onClick={() => signIn(gitHubProvider.id)}
+            onClick={() => {
+              signIn(gitHubProvider.id);
+              router.push('/');
+            }}
           >
             <div className="relative flex items-center justify-center space-x-8">
               <svg
