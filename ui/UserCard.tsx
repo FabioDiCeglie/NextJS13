@@ -5,11 +5,11 @@ export default function UserCard({ session }: any) {
     <div className="mb-4 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
       <div className="mt-3 flex flex-col items-center pb-10">
         <img
-          className="mb-3 h-24 w-24 rounded-full shadow-lg"
+          className="mb-3 hidden h-24 w-24 rounded-full shadow-lg md:block"
           src={session.user?.image ?? undefined}
           alt="Bonnie image"
         />
-        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        <h5 className="mb-1 hidden text-xl font-medium text-gray-900 dark:text-white md:block">
           {session.user?.name}
         </h5>
 

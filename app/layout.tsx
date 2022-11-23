@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: any }) {
                 <GlobalNav />
               </div>
 
-              <div className="col-start-3 space-y-6">
+              <div className="col-start-3 w-72 space-y-6 md:w-full lg:w-full">
                 <div className="rounded-xl border border-gray-800 bg-black p-8">
                   {children}
                 </div>
