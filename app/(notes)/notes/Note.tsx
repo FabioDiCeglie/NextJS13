@@ -32,8 +32,8 @@ export default function Note() {
     <div>
       {data?.notes?.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
-          <div className="mb-10 w-32 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 md:w-full lg:w-full">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <div className="mb-10 w-40 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 md:w-full lg:w-full">
+            <h5 className="mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white md:text-2xl">
               {title}
             </h5>
 
