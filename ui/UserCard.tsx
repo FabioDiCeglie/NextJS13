@@ -14,13 +14,12 @@ export default function UserCard({ session }: any) {
         </h5>
 
         <div className="mt-4 flex space-x-3 md:mt-6">
-          <a
-            href={`/`}
+          <button
             onClick={() => signOut()}
             className="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Log Out
-          </a>
+          </button>
         </div>
       </div>
     </div>
