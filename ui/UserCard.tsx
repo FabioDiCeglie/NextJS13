@@ -2,8 +2,8 @@ import { signOut } from 'next-auth/react';
 
 export default function UserCard({ session }: any) {
   return (
-    <div className="mb-4 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
-      <div className="mt-3 flex flex-col items-center pb-10">
+    <div className="mb-4 hidden w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 md:block">
+      <div className="mt-3 hidden flex-col items-center pb-10 md:flex">
         <img
           className="mb-3 hidden h-24 w-24 rounded-full shadow-lg md:block"
           src={session.user?.image ?? undefined}

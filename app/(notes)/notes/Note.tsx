@@ -4,7 +4,7 @@ import { DELETE_NOTE } from '#/graphql/Mutation/mutation';
 import { getNotes } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { EmptyDashboard } from '#/ui/EmptyDashboard';
-import { SignIn } from '#/ui/NavToSignIn';
+import { NavToSignIn } from '#/ui/NavToSignIn';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
@@ -24,7 +24,7 @@ export default function Note() {
     });
   };
 
-  if (!session) return <SignIn />;
+  if (!session) return <NavToSignIn />;
   if (loading) return <SkeletonCard />;
   if (data?.notes.length === 0) return <EmptyDashboard />;
 
@@ -32,7 +32,7 @@ export default function Note() {
     <div>
       {data?.notes?.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
-          <div className="mb-10 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+          <div className="mb-10 w-32 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 md:w-full lg:w-full">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {title}
             </h5>
