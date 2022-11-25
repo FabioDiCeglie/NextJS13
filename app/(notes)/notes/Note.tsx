@@ -5,16 +5,16 @@ import { getNotes } from '#/graphql/Query/queries';
 import { Notes } from '#/lib/types';
 import { EmptyDashboard } from '#/ui/EmptyDashboard';
 import { NavToSignIn } from '#/ui/NavToSignIn';
-import Pagination from '#/ui/Pagination';
+import PaginationComponent from '#/ui/Pagination';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 export default function Note() {
-  const [allNotes, setAllNotes] = useState<any>();
+  const [allNotes, setAllNotes] = useState<[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [notesPerPage, setNotesPerPage] = useState<number>(2);
+  const [notesPerPage] = useState<number>(2);
 
   const { data: session } = useSession();
   const { data, loading } = useQuery(getNotes);
@@ -44,11 +44,18 @@ export default function Note() {
   const indexOfFirstNotes = indexOfLastNotes - notesPerPage;
   const currentNotes = notes.slice(indexOfFirstNotes, indexOfLastNotes);
   //Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginateFront = () => setCurrentPage(currentPage + 1);
+  const paginateBack = () => setCurrentPage(currentPage - 1);
 
   return (
     <div>
-      <Pagination />
+      <PaginationComponent
+        postsPerPage={notesPerPage}
+        totalPosts={notes.length}
+        paginateBack={paginateBack}
+        paginateFront={paginateFront}
+        currentPage={currentPage}
+      />
       {currentNotes.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
           <div className="mb-10 w-40 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 md:w-full lg:w-full">
