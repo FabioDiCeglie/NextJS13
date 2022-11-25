@@ -9,13 +9,21 @@ import Pagination from '#/ui/Pagination';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 export default function Note() {
+  const [allNotes, setAllNotes] = useState<any>();
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [notesPerPage, setNotesPerPage] = useState<number>(2);
+
   const { data: session } = useSession();
   const { data, loading } = useQuery(getNotes);
   const [resultDeleteNote] = useMutation(DELETE_NOTE, {
     refetchQueries: [{ query: getNotes }, 'AllNotesQuery'],
   });
+  useEffect(() => {
+    setAllNotes(data?.notes);
+  }, []);
 
   const deleteNote = async (id: String) => {
     resultDeleteNote({
@@ -29,9 +37,19 @@ export default function Note() {
   if (loading) return <SkeletonCard />;
   if (data?.notes.length === 0) return <EmptyDashboard />;
 
+  const notes = data.notes;
+  const pageNumbers = notes / notesPerPage;
+
+  const indexOfLastNotes = currentPage * notesPerPage;
+  const indexOfFirstNotes = indexOfLastNotes - notesPerPage;
+  const currentNotes = notes.slice(indexOfFirstNotes, indexOfLastNotes);
+  //Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <div>
-      {data?.notes?.map(({ title, content, id }: Notes) => (
+      <Pagination />
+      {currentNotes.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
           <div className="mb-10 w-40 max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 md:w-full lg:w-full">
             <h5 className="mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white md:text-2xl">

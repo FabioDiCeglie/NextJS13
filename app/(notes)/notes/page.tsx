@@ -1,3 +1,4 @@
+import Pagination from '#/ui/Pagination';
 import Note from './Note';
 
 export default async function Page() {
