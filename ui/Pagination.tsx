@@ -1,9 +1,25 @@
-const PaginationComponent = ({ paginateFront, paginateBack }: any) => {
-  return (
-    <div className="mb-4">
-      <nav aria-label="Page navigation">
-        <ul className="inline-flex">
-          <li>
+export type Props = {
+  paginateFront: () => void;
+  paginateBack: () => void;
+  currentPage: number;
+  indexOfLastNotes: number;
+  totalNumberOfNotes: number;
+};
+
+const PaginationComponent = ({
+  paginateFront,
+  paginateBack,
+  currentPage,
+  indexOfLastNotes,
+  totalNumberOfNotes,
+}: Props) => (
+  <div className="mb-4">
+    <nav aria-label="Page navigation">
+      <ul className="inline-flex">
+        <li>
+          {currentPage == 1 ? (
+            ''
+          ) : (
             <a
               onClick={() => {
                 paginateBack();
@@ -12,9 +28,13 @@ const PaginationComponent = ({ paginateFront, paginateBack }: any) => {
             >
               Previous
             </a>
-          </li>
+          )}
+        </li>
 
-          <li>
+        <li>
+          {indexOfLastNotes == totalNumberOfNotes ? (
+            ''
+          ) : (
             <a
               onClick={() => {
                 paginateFront();
@@ -23,10 +43,11 @@ const PaginationComponent = ({ paginateFront, paginateBack }: any) => {
             >
               Next
             </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
-};
+          )}
+        </li>
+      </ul>
+    </nav>
+  </div>
+);
+
 export default PaginationComponent;

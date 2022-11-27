@@ -33,12 +33,9 @@ export default function Note() {
   if (data?.notes.length === 0) return <EmptyDashboard />;
 
   const notes = data.notes;
-
   const indexOfLastNotes = currentPage * notesPerPage;
   const indexOfFirstNotes = indexOfLastNotes - notesPerPage;
   const currentNotes = notes.slice(indexOfFirstNotes, indexOfLastNotes);
-  console.log(currentPage);
-  if (currentPage === 0) return setCurrentPage(1);
   //Change page
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
@@ -48,6 +45,9 @@ export default function Note() {
       <PaginationComponent
         paginateBack={paginateBack}
         paginateFront={paginateFront}
+        currentPage={currentPage}
+        totalNumberOfNotes={notes.length}
+        indexOfLastNotes={indexOfLastNotes}
       />
       {currentNotes.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
