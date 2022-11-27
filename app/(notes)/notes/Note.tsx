@@ -9,7 +9,7 @@ import PaginationComponent from '#/ui/Pagination';
 import { SkeletonCard } from '#/ui/SkeletonCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Note() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -46,8 +46,8 @@ export default function Note() {
         paginateBack={paginateBack}
         paginateFront={paginateFront}
         currentPage={currentPage}
-        totalNumberOfNotes={notes.length}
-        indexOfLastNotes={indexOfLastNotes}
+        totalNumbers={notes.length}
+        indexOfLasts={indexOfLastNotes}
       />
       {currentNotes.map(({ title, content, id }: Notes) => (
         <div key={id as string}>

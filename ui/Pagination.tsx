@@ -2,16 +2,16 @@ export type Props = {
   paginateFront: () => void;
   paginateBack: () => void;
   currentPage: number;
-  indexOfLastNotes: number;
-  totalNumberOfNotes: number;
+  indexOfLasts: number;
+  totalNumbers: number;
 };
 
 const PaginationComponent = ({
   paginateFront,
   paginateBack,
   currentPage,
-  indexOfLastNotes,
-  totalNumberOfNotes,
+  indexOfLasts,
+  totalNumbers,
 }: Props) => (
   <div className="mb-4">
     <nav aria-label="Page navigation">
@@ -32,7 +32,7 @@ const PaginationComponent = ({
         </li>
 
         <li>
-          {indexOfLastNotes == totalNumberOfNotes ? (
+          {indexOfLasts == totalNumbers ? (
             ''
           ) : (
             <a
