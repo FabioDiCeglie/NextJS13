@@ -1,48 +1,31 @@
-const PaginationComponent = ({
-  postsPerPage,
-  totalPosts,
-  paginateFront,
-  paginateBack,
-  currentPage,
-}: any) => {
+const PaginationComponent = ({ paginateFront, paginateBack }: any) => {
   return (
-    <div className="py-2">
-      <div>
-        <p className="text-sm text-gray-700">
-          Showing
-          <span className="font-medium">{currentPage * postsPerPage - 10}</span>
-          to
-          <span className="font-medium"> {currentPage * postsPerPage} </span>
-          of
-          <span className="font-medium"> {totalPosts} </span>
-          results
-        </p>
-      </div>
-      <nav className="block"></nav>
-      <div>
-        <nav
-          className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
-          aria-label="Pagination"
-        >
-          <a
-            onClick={() => {
-              paginateBack();
-            }}
-            className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
-          >
-            <span>Previous</span>
-          </a>
+    <div className="mb-4">
+      <nav aria-label="Page navigation">
+        <ul className="inline-flex">
+          <li>
+            <a
+              onClick={() => {
+                paginateBack();
+              }}
+              className="rounded-l-lg border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              Previous
+            </a>
+          </li>
 
-          <a
-            onClick={() => {
-              paginateFront();
-            }}
-            className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
-          >
-            <span>Next</span>
-          </a>
-        </nav>
-      </div>
+          <li>
+            <a
+              onClick={() => {
+                paginateFront();
+              }}
+              className="rounded-r-lg border border-gray-300 bg-white px-3 py-2 text-sm leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

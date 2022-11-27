@@ -12,18 +12,13 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 export default function Note() {
-  const [allNotes, setAllNotes] = useState<[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [notesPerPage] = useState<number>(2);
-
   const { data: session } = useSession();
   const { data, loading } = useQuery(getNotes);
   const [resultDeleteNote] = useMutation(DELETE_NOTE, {
     refetchQueries: [{ query: getNotes }, 'AllNotesQuery'],
   });
-  useEffect(() => {
-    setAllNotes(data?.notes);
-  }, []);
 
   const deleteNote = async (id: String) => {
     resultDeleteNote({
@@ -38,11 +33,12 @@ export default function Note() {
   if (data?.notes.length === 0) return <EmptyDashboard />;
 
   const notes = data.notes;
-  const pageNumbers = notes / notesPerPage;
 
   const indexOfLastNotes = currentPage * notesPerPage;
   const indexOfFirstNotes = indexOfLastNotes - notesPerPage;
   const currentNotes = notes.slice(indexOfFirstNotes, indexOfLastNotes);
+  console.log(currentPage);
+  if (currentPage === 0) return setCurrentPage(1);
   //Change page
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
@@ -50,11 +46,8 @@ export default function Note() {
   return (
     <div>
       <PaginationComponent
-        postsPerPage={notesPerPage}
-        totalPosts={notes.length}
         paginateBack={paginateBack}
         paginateFront={paginateFront}
-        currentPage={currentPage}
       />
       {currentNotes.map(({ title, content, id }: Notes) => (
         <div key={id as string}>
