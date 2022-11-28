@@ -1,6 +1,15 @@
-# Next.js App Directory Playground
+# Introduction
 
-Next.js introduced the `app/` directory (beta). This is the result of the [Layouts RFC](https://nextjs.org/blog/layouts-rfc) previously published for community feedback. This includes support for:
+Finally I had some time to practice the new version of NextJS, NextJS13 with this new features is awesome, from the new `/ app` directory to the Turbopack and much more!
+As a user I always wanted a place where to write some notes and a list of tasks, for this I decided to create Operation-app!
+I had an amazing opportunity to improve my skills with Prisma, GraphQL, Apollo, TailwindCSS, NextAuth, Vercel and React/NextJS13.
+I'm really happy of the result, available also for mobile :)!
+
+## Website
+
+- Operation App ['https://operation-app-next-js-13.vercel.app/']
+
+# Next.js 13 Operation App Features
 
 - **Layouts:** Easily share UI while preserving state and avoiding re-renders.
 - **Server Components:** Making server-first the default for the most dynamic applications.
