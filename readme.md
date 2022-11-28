@@ -7,7 +7,7 @@ I'm really happy of the result, available also for mobile :)!
 
 ## Website
 
-- [Operation App]('https://operation-app-next-js-13.vercel.app/')
+- [Operation App](https://operation-app-next-js-13.vercel.app/)
 
 # Next.js 13 Operation App Features
 
