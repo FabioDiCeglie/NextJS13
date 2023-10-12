@@ -6,7 +6,7 @@ I had an amazing opportunity to improve my skills. I'm really happy of the resul
 
 ## Website
 
-- [Operation App](https://django-next-js-blog-project.vercel.app/)
+- [Operation App](https://operation-app-next-js-13.vercel.app/)
 
 ##  Technologies used
 
